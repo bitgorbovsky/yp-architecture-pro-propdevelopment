@@ -1,0 +1,60 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: default
+  name: developer-access
+subjects:
+- kind: User
+  name: user-000
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
+...
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: default
+  name: devops-access
+subjects:
+- kind: User
+  name: user-001
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: devops
+  apiGroup: rbac.authorization.k8s.io
+...
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: default
+  name: security-watcher-access
+subjects:
+- kind: User
+  name: user-002
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: security-watcher
+  apiGroup: rbac.authorization.k8s.io
+...
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: default
+  name: security-engineer-access
+subjects:
+- kind: User
+  name: user-003
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: security-engineer
+  apiGroup: rbac.authorization.k8s.io
+...
