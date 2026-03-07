@@ -1,0 +1,50 @@
+@startuml
+!include <C4/C4_Context>
+
+Person(stateOwner, "Собственник", "Собственник недвижимости")
+Person(guest, "Гость", "Гость")
+Person(tenant, "Наниматель", "Квартиросъёмщик, наниматель недвижимости")
+Person(resident, "Жилец", "Житель квартиры")
+
+Boundary(propDevelopment, "Экосистема PropDevelopment", $descr="Экосистема компании PropDevelopment") {
+    System(propDevelopmentSystem, "Система PropDevelopment")
+}
+
+System_Ext(okular, "Окуляр", "")
+System_Ext(governmentRegistries, "Государственные регистрационные органы", $descr="Отвечают за регистрационные действия с транспортными единицами")
+
+Rel_U(stateOwner, okular, "Регистрация, загрузка фото (биометрических данных), \
+                         подтверждение использования личных данных, регистрация \
+                         автомобиля").
+Rel_U(guest, okular, "Регистрация, загрузка фото (биометрических данных), \
+                    подтверждение использования личных данных, регистрация \
+                    автомобиля").
+Rel_U(tenant, okular, "Регистрация, загрузка фото (биометрических данных), \
+                     подтверждение использования личных данных, регистрация \
+                     автомобиля").
+Rel_U(resident, okular, "Регистрация, загрузка фото (биометрических данных), \
+                       подтверждение использования личных данных, регистрация \
+                       автомобиля").
+
+Rel(stateOwner, propDevelopmentSystem, "Выдача разрешений на открытие \
+                                        входной двери по распознаванию лиц, \
+                                        выдача разрешений на открытие шлагбаума \
+                                        по распознаванию номера машины").
+Rel(tenant, propDevelopmentSystem, "Выдача разрешений на открытие \
+                                    входной двери по распознаванию лиц, \
+                                    выдача разрешений на открытие шлагбаума \
+                                    по распознаванию номера машины").
+Rel(stateOwner, propDevelopmentSystem, "Использование умного дома").
+Rel(tenant, propDevelopmentSystem, "Использование умного дома").
+Rel(resident, propDevelopmentSystem, "Использование умного дома").
+
+
+Rel(okular, governmentRegistries, "Запрос на получение регистрационных данных на автомобиль", "SOAP")
+
+Rel(stateOwner, tenant, "Приглашение на регистрацию в системе PropDevelopment")
+Rel(stateOwner, guest, "Приглашение на регистрацию в системе PropDevelopment")
+Rel(stateOwner, resident, "Приглашение на регистрацию в системе PropDevelopment")
+Rel(stateOwner, tenant, "Приглашение на регистрацию в системе PropDevelopment")
+
+
+@enduml
